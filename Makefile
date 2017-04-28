@@ -2,7 +2,7 @@
 MCU      = cortex-m3
 SUBMDL   = stm32f103
 
-TARGET = bootloader
+TARGET = application
 
 # toolchain (using code sourcery now)
 THUMB    = -mthumb
@@ -32,7 +32,7 @@ ALL_LIB += /home/shilinguo/stm32/tools/gcc-arm-none-eabi-5_4-2016q3/lib/gcc/arm-
 ALL_SRC = start_up.o $(ALL_LIB)
 
 
-bootloader:$(ALL_SRC)
+$(TARGET):$(ALL_SRC)
 	$(LD) $(LDFLAGS) $(ALL_SRC) --output $(TARGET).elf
 	$(OBJCOPY) -O binary $(TARGET).elf $(TARGET).bin
 	$(OBJDUMP) -h -S -D $(TARGET).elf > objdump.txt

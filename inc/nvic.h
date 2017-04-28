@@ -62,4 +62,6 @@ typedef struct {
 
 extern void nvicInit(NVIC_InitTypeDef *NVIC_InitStruct);
 extern void nvic_disable_interrupts(void);
+extern void nvic_vtor_remapping(unsigned int offset);
+
 

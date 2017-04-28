@@ -51,17 +51,16 @@ void jump_to_app(void) {
 extern void xmodem(void);
 
 int main()
-{	
-//	sys_clk_init(9);
+{
+	nvic_vtor_remapping(APP_START_ADD - 0x08000000);
+	sys_clk_init(9);
 
-//	uart_init(72, 115200); 	// 115200
+	uart_init(72, 115200); 	// 115200
 	led_init(1);
 
-	led_off(1);
-//	timer_init(100,719); // 10K 
+	timer_init(100,719); // 10K 
 
-	while(1)
-	printf("Build Info:\n\rDate:%s\n\rTime:%s\n\r", __DATE__, __TIME__);
+	info();
 
 	while(1) {
 		wait_cmd();
@@ -117,6 +116,7 @@ void wait_cmd(void)
 {
 	char cmd_buf[15];
 	int num = 0,i = 0;
+	
 	while(1) {
 		memset(cmd_buf, 0, 15);
 		num = get_cmd(cmd_buf);

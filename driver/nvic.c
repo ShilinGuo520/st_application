@@ -48,3 +48,8 @@ void nvic_disable_interrupts(void)
 	*(vu32*)(STK_CTRL) = 0x04;
 }
 
+void nvic_vtor_remapping(unsigned int offset)
+{
+	*(vu32*)(SCB_VTOR) = offset;
+}
+
